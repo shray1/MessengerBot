@@ -64,3 +64,11 @@ class MyQuoteBotView(generic.View):
                     # are sent as attachments and must be handled accordingly. 
                     post_facebook_message(message['sender']['id'], message['message']['text'])    
         return HttpResponse()    
+
+
+def index(request):
+    return HttpResponse("Hello World")
+
+
+def hello(request):
+    return HttpResponse('By Bye world')
