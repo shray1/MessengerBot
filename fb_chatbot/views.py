@@ -78,7 +78,7 @@ def index(request):
     return HttpResponse("Hello World")
 
 def test():
-    post_facebook_message('shray.gahallot','test message')
+    post_facebook_message('100000401701314','test message')
 
 
 
