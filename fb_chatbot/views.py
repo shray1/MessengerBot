@@ -72,6 +72,10 @@ def post_facebook_message(fbid, recevied_message):
         print "In except block"
         joke_text = 'Yo ' + reply_text
     
+    joke_text = quote_search(recevied_message)
+    response_text = recevied_message +' :)'
+
+
     message_object = {
         "attachment":{
           "type":"image",
