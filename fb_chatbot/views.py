@@ -12,7 +12,8 @@ from django.utils.decorators import method_decorator
 
 # Create your views here.
 
-PAGE_ACCESS_TOKEN = 'EAAQA1ZA0bZBB0BANqfKsQ6kyninU45fAIJcmvXybmW7r8XQBfOcO7ZAVTMxNZAmbUytGTYpHZAq1C2SZBZBC0Emd0Xk5ZBDr4e9Twojjd8oFw5NgEaV4BPvawmhZB82LoAzKX3sCxSP9EOqLTLNzRVVsYeqglw3Ph0I54XuFcX1cw4AZDZD'
+PAGE_ACCESS_TOKEN = 'EAAQA1ZA0bZBB0BAJfRrVXYdjHR0mhH8aDUfFGNBjhynrcCiHmyZCGSE11LxLbRPPadrmLTHNcEZA9ZCXvs4izgaNhXkZBVkWxvZA8CK7vP5RqOmK4k3Ah24DWooWw2o6ZBGHnZCEvms8RXKD5vZBFwQ81ZCFZAT1PnEmvXE8MIHZBHgnLRwZDZD'
+
 
 
 def post_facebook_message(fbid, recevied_message):
