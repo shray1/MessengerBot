@@ -21,6 +21,18 @@ quotes_arr = [["Life isn’t about getting and having, it’s about giving and b
 ["Whatever the mind of man can conceive and believe, it can achieve.", "Napoleon Hill"],
 ["Strive not to be a success, but rather to be of value.", "Albert Einstein"],
 ["Two roads diverged in a wood, and I—I took the one less traveled by, And that has made all the difference.", "Robert Frost"],
+["It’s your place in the world; it’s your life. Go on and do all you can with it, and make it the life you want to live.", "Mae Jemison"],
+["You may be disappointed if you fail, but you are doomed if you don’t try.", "Beverly Sills"],
+["Remember no one can make you feel inferior without your consent.", "Eleanor Roosevelt"],
+["Life is what we make it, always has been, always will be.", "Grandma Moses"],
+["The question isn’t who is going to let me; it’s who is going to stop me.", "Ayn Rand"],
+["When everything seems to be going against you, remember that the airplane takes off against the wind, not with it.", "Henry Ford"],
+["It’s not the years in your life that count. It’s the life in your years.", "Abraham Lincoln"],
+["Change your thoughts and you change your world.", "Norman Vincent Peale"],
+["Either write something worth reading or do something worth writing.", "Benjamin Franklin"],
+["Nothing is impossible, the word itself says, “I’m possible!”", "–Audrey Hepburn"],
+["The only way to do great work is to love what you do.", "Steve Jobs"],
+["If you can dream it, you can achieve it.", "Zig Ziglar"]
 ]
 
 
@@ -33,7 +45,7 @@ def return_random_quote():
 
 
 def post_facebook_message(fbid, recevied_message):
-    reply_text = recevied_message + ':)'
+    reply_text = recevied_message + ' :)'
 
     try:
         user_details_url = "https://graph.facebook.com/v2.6/%s"%fbid 
@@ -44,8 +56,10 @@ def post_facebook_message(fbid, recevied_message):
     except:
         print "In except block"
         joke_text = 'Yo ' + reply_text
-
     
+
+    random_quote = return_random_quote()
+    joke_text = random_quote[0] 
     print "Posting message"               
     post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=%s'%PAGE_ACCESS_TOKEN
     response_msg = json.dumps({"recipient":{"id":fbid}, "message":{"text":joke_text}})
