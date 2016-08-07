@@ -72,7 +72,8 @@ def post_facebook_message(fbid, recevied_message):
         print "In except block"
         joke_text = 'Yo ' + reply_text
     
-    joke_text = quote_search(recevied_message)
+    #joke_text = quote_search(recevied_message)
+    joke_text = return_random_quote()[0] 
     response_text = recevied_message +' :)'
 
 
