@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 import json, requests, random, re
 from pprint import pprint
 
@@ -12,7 +16,21 @@ from django.utils.decorators import method_decorator
 
 PAGE_ACCESS_TOKEN = 'EAAQA1ZA0bZBB0BAKHYZA0AIgslS75KYQVheP0eIH6r5JKXZArYl3FWJzAksixxZBpP55BqfSUavhOQ8PhaHcM4kovmJQNTmfdkdQKkjup0wN9u9Yf8PSiB6ydAc9BSex5KjKQqaKWwuXqNOid9eRWwFIZBsFoXinZAVa6z5rwnN7wZDZD'
 VERIFY_TOKEN = '8447208288'
-# we need to provide an alphabet also?
+
+quotes_arr = [["Life isn’t about getting and having, it’s about giving and being.", "Kevin Kruse"],
+["Whatever the mind of man can conceive and believe, it can achieve.", "Napoleon Hill"],
+["Strive not to be a success, but rather to be of value.", "Albert Einstein"],
+["Two roads diverged in a wood, and I—I took the one less traveled by, And that has made all the difference.", "Robert Frost"],
+]
+
+
+
+def return_random_quote():
+    random.shuffle(quotes_arr)   # random is imported.
+    return quotes_arr[0]    
+
+
+
 
 def post_facebook_message(fbid, recevied_message):
     reply_text = recevied_message + ':)'
@@ -74,7 +92,8 @@ class MyQuoteBotView(generic.View):
 
 
 def index(request):
-    print test()
+    #print test()
+    print return_random_quote()
     return HttpResponse("Hello World")
 
 def test():
