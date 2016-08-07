@@ -67,7 +67,7 @@ class MyQuoteBotView(generic.View):
                     # Assuming the sender only sends text. Non-text messages like stickers, audio, pictures
                     # are sent as attachments and must be handled accordingly. 
                     post_facebook_message(message['sender']['id'], message['message']['text'])    
-                    
+                    print 
 
         return HttpResponse()    
 
@@ -78,7 +78,8 @@ def index(request):
     return HttpResponse("Hello World")
 
 def test():
-    post_facebook_message('100000401701314','test message')
+    #post_facebook_message('100000401701314','test message')
+    post_facebook_message('1366822393332584','test message')
 
 
 
