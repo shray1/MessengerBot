@@ -14,6 +14,7 @@ from django.utils.decorators import method_decorator
 
 # Create your views here.
 
+
 PAGE_ACCESS_TOKEN = 'EAAQA1ZA0bZBB0BAKHYZA0AIgslS75KYQVheP0eIH6r5JKXZArYl3FWJzAksixxZBpP55BqfSUavhOQ8PhaHcM4kovmJQNTmfdkdQKkjup0wN9u9Yf8PSiB6ydAc9BSex5KjKQqaKWwuXqNOid9eRWwFIZBsFoXinZAVa6z5rwnN7wZDZD'
 VERIFY_TOKEN = '8447208288'
 
@@ -43,6 +44,20 @@ def return_random_quote():
 
 
 
+def quote_search(str_var):
+    str_var.lower()
+    random.shuffle(quotes_arr)
+    for quote_text,quote_author in quotes_arr:
+        if str_var in quote_author.lower():
+            return quote_text
+
+    return return_random_quote()[0]
+'''def quote_search(str_var):
+    for quote_text , quote_author in quotes_arr:
+        if str_var in quote_author.lower():
+            return quote_text
+    return return_random_quote()
+'''
 
 def post_facebook_message(fbid, recevied_message):
     reply_text = recevied_message + ' :)'
@@ -59,7 +74,17 @@ def post_facebook_message(fbid, recevied_message):
     
 
     random_quote = return_random_quote()
-    joke_text = random_quote[0] 
+    joke_text = return_random_quote()[0] 
+    
+
+    message_object = {
+        "attachment":{
+          "type":"image",
+          "payload":{
+            "url":"https://petersapparel.com/img/shirt.png"
+          }
+        }
+    }
     print "Posting message"               
     post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=%s'%PAGE_ACCESS_TOKEN
     response_msg = json.dumps({"recipient":{"id":fbid}, "message":{"text":joke_text}})
@@ -108,7 +133,7 @@ class MyQuoteBotView(generic.View):
 def index(request):
     #print test()
     print return_random_quote()
-    return HttpResponse("Hello World")
+    return HttpResponse("Hello World" + quote_search('*'))
 
 def test():
     #post_facebook_message('100000401701314','test message')
