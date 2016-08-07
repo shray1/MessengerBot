@@ -10,9 +10,9 @@ from django.utils.decorators import method_decorator
 
 # Create your views here.
 
-PAGE_ACCESS_TOKEN = 'EAAYgQ8PcnXcBAMoZC2E1QWAem7VOc7VLvUsTNNHCNx2seOF5CFoMYkodiPk7jgW98ALPIkx8Q8h46joQh93A4EEIs5dmvQXvERRUIMKZCbbna73yGvvusB9tryP5B17TKXXgaajBTDVgZB8r1a4M2qAuaJ9NqkkuHA3ZCHDtZCQZDZD'
-VERIFY_TOKEN = '8447789934m'
-
+PAGE_ACCESS_TOKEN = 'EAAQA1ZA0bZBB0BAKHYZA0AIgslS75KYQVheP0eIH6r5JKXZArYl3FWJzAksixxZBpP55BqfSUavhOQ8PhaHcM4kovmJQNTmfdkdQKkjup0wN9u9Yf8PSiB6ydAc9BSex5KjKQqaKWwuXqNOid9eRWwFIZBsFoXinZAVa6z5rwnN7wZDZD'
+VERIFY_TOKEN = '8447208288'
+# we need to provide an alphabet also?
 
 def post_facebook_message(fbid, recevied_message):
     reply_text = recevied_message + ':)'
@@ -35,11 +35,16 @@ def post_facebook_message(fbid, recevied_message):
 
 class MyQuoteBotView(generic.View):
     def get(self, request, *args, **kwargs):
-        if self.request.GET['hub.verify_token'] == VERIFY_TOKEN:
-            return HttpResponse(self.request.GET['hub.challenge'])
-        else:
-            return HttpResponse('Error, invalid token')
-        
+        try :
+            print "Hello!"
+            if self.request.GET['hub.verify_token'] == VERIFY_TOKEN:
+                print "There!"
+                return HttpResponse(self.request.GET['hub.challenge'])
+            else:
+                return HttpResponse('Error, invalid token')
+        except:
+            return HttpResponse('No token Provided.')
+    
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return generic.View.dispatch(self, request, *args, **kwargs)
@@ -71,7 +76,7 @@ def index(request):
     return HttpResponse("Hello World")
 
 def test():
-    post_facebook_message('abhishek.sukumar.1','test message')
+    post_facebook_message('shray.gahallot','test message')
 
 
 
