@@ -70,7 +70,7 @@ def post_facebook_message(fbid, recevied_message):
         joke_text = 'Yo ' + reply_text
     
     #joke_text = quote_search(recevied_message)
-    #joke_text = return_random_quote()[0] 
+    joke_text2 = return_random_quote()[0] 
     #response_text = recevied_message +' :)'
 
 
@@ -87,7 +87,9 @@ def post_facebook_message(fbid, recevied_message):
     message_text = {
         "text": joke_text
         }
-    
+    message_text2 = {
+        "text": joke_text2
+    }
 
     message_generic_template = {
             "attachment":{
@@ -110,6 +112,7 @@ def post_facebook_message(fbid, recevied_message):
 
     post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=%s'%PAGE_ACCESS_TOKEN
     response_txt_msg = json.dumps({"recipient":{"id":fbid}, "message":message_text})
+    response_txt_msg2 = json.dumps({"recipient":{"id":fbid}, "message":message_text2})
     response_img_msg = json.dumps({"recipient":{"id":fbid}, "message":message_image})
     response_temp_msg = json.dumps({"recipient":{"id":fbid}, "message":message_generic_template})
 
@@ -117,8 +120,9 @@ def post_facebook_message(fbid, recevied_message):
     
     status = requests.post(post_message_url, headers={"Content-Type": "application/json"},data=response_txt_msg)
     #status = requests.post(post_message_url, headers={"Content-Type": "application/json"},data=response_msg2)
+    status = requests.post(post_message_url, headers={"Content-Type": "application/json"},data=response_txt_msg2)
     status = requests.post(post_message_url, headers={"Content-Type": "application/json"},data=response_img_msg)
-    status = requests.post(post_message_url, headers={"Content-Type": "application/json"},data=response_temp_msg)
+    #status = requests.post(post_message_url, headers={"Content-Type": "application/json"},data=response_temp_msg)
     pprint(status.json())
 
 
